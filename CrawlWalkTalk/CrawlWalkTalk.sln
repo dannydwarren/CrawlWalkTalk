@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppLifecycleDemo", "AppLifecycleDemo\AppLifecycleDemo.csproj", "{FCE37904-E1E5-4CA6-9E55-60A5B9592CD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceApiDemo", "VoiceApiDemo\VoiceApiDemo.csproj", "{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,26 @@ Global
 		{FCE37904-E1E5-4CA6-9E55-60A5B9592CD8}.Release|x86.ActiveCfg = Release|x86
 		{FCE37904-E1E5-4CA6-9E55-60A5B9592CD8}.Release|x86.Build.0 = Release|x86
 		{FCE37904-E1E5-4CA6-9E55-60A5B9592CD8}.Release|x86.Deploy.0 = Release|x86
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|ARM.Build.0 = Debug|ARM
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|ARM.Deploy.0 = Debug|ARM
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x86.ActiveCfg = Debug|x86
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x86.Build.0 = Debug|x86
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x86.Deploy.0 = Debug|x86
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|ARM.ActiveCfg = Release|ARM
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|ARM.Build.0 = Release|ARM
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|ARM.Deploy.0 = Release|ARM
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x64.ActiveCfg = Release|Any CPU
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x86.ActiveCfg = Release|x86
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x86.Build.0 = Release|x86
+		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
