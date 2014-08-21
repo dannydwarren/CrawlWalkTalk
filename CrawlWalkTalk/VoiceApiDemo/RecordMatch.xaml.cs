@@ -20,15 +20,17 @@ namespace VoiceApiDemo
 		private const string RECORD_MATCH_WITH_PLAYER_NAMES_KEY = "RecordMatchWithPlayerNames";
 		private const string RECORD_MATCH_WITH_TEAM_NAMES_KEY = "RecordMatchWithTeamNames";
 		private const string RECORD_MATCH_UNKNOWN_KEY = "RecordMatchUnknown";
+		private readonly SpeechSynthesizer _speechSynth = new SpeechSynthesizer();
 
 		protected override void OnNavigatedTo( NavigationEventArgs e )
 		{
+			//TODO: VoiceApiDemo 3.0 - Handle Voice Navigation
 			base.OnNavigatedTo( e );
 
 			string player1Name = "Player One";
 			string player2Name = "Player Two";
-            //RecordMatch.xaml?voiceCommandName=RecordMatchWithPlayerNames&Player1Name=Danny&Player2Name=Travis
-            //TODO: 3.0 - Recognize Voice Command from NavigationContext
+			string taunt = string.Empty;
+			//NavigationContext.QueryString == "RecordMatch.xaml?voiceCommandName=RecordMatchWithPlayerNames&Player1Name=Danny&Player2Name=Travis"
 			string voiceCommandName;
 			if ( NavigationContext.QueryString
                 .TryGetValue( VOICE_COMMAND_NAME_KEY, out voiceCommandName ) )
@@ -49,63 +51,41 @@ namespace VoiceApiDemo
 				{
 					PageTitle.Text = "record unknown match";
 				}
+
+				if (NavigationContext.QueryString.Keys.Contains("taunt"))
+				{
+					taunt = NavigationContext.QueryString["taunt"];
+				}
 			}
 
-			InitializeMatch( player1Name, player2Name );
+			InitializeMatch( player1Name, player2Name, taunt );
 		}
 
-		private async void InitializeMatch( string player1Name, string player2Name )
+		private async void InitializeMatch( string player1Name, string player2Name, string taunt )
 		{
 			Player1NameTextBox.Text = player1Name;
 			Player2NameTextBox.Text = player2Name;
 
-            //TODO: 4.0 - Announce match using Text-To-Speech (TTS)
-			await AnnounceMatch( player1Name, player2Name );
+			//TODO: VoiceApiDemo 4.0 - Text to Speech
+			await _speechSynth.SpeakTextAsync( string.Format( "Match. {0} verses {1}. Ready? Fight!", player1Name, player2Name ) );
+			if (!string.IsNullOrEmpty(taunt))
+			{
+				await _speechSynth.SpeakTextAsync(taunt);
+			}
 
-            //TODO: 5.0 - Use speech recognition to listen for player scores
             await UseVoiceToRecordPoints( player1Name, player2Name );
 		}
-
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-
-        //TODO: 4.1 - Initialize SpeechSynthesizer
-		private readonly SpeechSynthesizer _speechSynth = new SpeechSynthesizer();
-		private async Task AnnounceMatch( string player1Name, string player2Name )
-		{
-            //TODO: 4.2 - Setup SpeechSynthesizer and call SpeakTextAsync() with text to be read
-			await _speechSynth.SpeakTextAsync( string.Format( "Match. {0} verses {1}. Ready? Fight!", player1Name, player2Name ) );
-		}
-
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
-		//****************************************************************************************************
 
 		private const string POINT_PLAYER_FORMAT = "Point {0}";
 		private const string ADD_ONE_PLAYER_FORMAT = "Add One {0}";
 		private const int WINNING_SCORE = 3;
 		private const int WIN_BY_FACTOR = 1;
-
-        //TODO: 5.1 - Initialize SpeechRecognizer
 		private readonly SpeechRecognizer _speechReco = new SpeechRecognizer();
+
 		private async Task UseVoiceToRecordPoints( string player1Name, string player2Name )
 		{
-			//Using Programmatic List Grammar
+			//TODO: VoiceApiDemo 5.0 - Speech to Text
+
 			string[] pointGrammar = new[]
 				                        {
 					                        string.Format(POINT_PLAYER_FORMAT, player1Name),
@@ -113,9 +93,9 @@ namespace VoiceApiDemo
 					                        string.Format(ADD_ONE_PLAYER_FORMAT, player1Name),
 					                        string.Format(ADD_ONE_PLAYER_FORMAT, player2Name),
 				                        };
-            //TODO: 5.2 - Setup Grammars
+
 			_speechReco.Grammars.AddGrammarFromList( "PointGrammarKey", pointGrammar );
-            //TODO: 5.3 - Subscribe to AudioCaptureStateChanged in order to inform the user what state speech recognition is in
+
 			_speechReco.AudioCaptureStateChanged += AudioCaptureStateChanged;
 
 			int player1Points = 0;
@@ -123,7 +103,6 @@ namespace VoiceApiDemo
 			while ( player1Points < WINNING_SCORE && player2Points < WINNING_SCORE
 				   && ( player1Points > player2Points - WIN_BY_FACTOR || player2Points > player1Points - WIN_BY_FACTOR ) )
 			{
-                //TODO: 5.4 - Listen for result with RecognizeAsync() on the SpeechRecognizer
 				SpeechRecognitionResult result = await _speechReco.RecognizeAsync();
 				if ( result.Text == pointGrammar[0] || result.Text == pointGrammar[2] )
 				{
@@ -147,7 +126,6 @@ namespace VoiceApiDemo
 
 		private void AudioCaptureStateChanged( SpeechRecognizer sender, SpeechRecognizerAudioCaptureStateChangedEventArgs args )
 		{
-            //TODO: 5.5 - Process AudioCaptureStateChanged (NOTE: This event is fired on a background thread)
 			Deployment.Current.Dispatcher.BeginInvoke( () =>
 			{
 				switch ( args.State )

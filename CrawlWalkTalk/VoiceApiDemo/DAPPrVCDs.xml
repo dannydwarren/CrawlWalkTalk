@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.0">
+<!--TODO: VoiceApiDemo 1.0 - VCD File-->
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
 	<CommandSet xml:lang="en-US" Name="DAPPrCommandSet">
 		<CommandPrefix>Dapper</CommandPrefix>
 		<Example> view standings </Example>
 
-        <!--TODO: 1.0 - ViewStandings Command and Page-->
         <Command Name="ViewStandings">
 			<Example> view standings </Example>
 			<ListenFor> view [current] standings </ListenFor>
@@ -14,7 +14,6 @@
 			<Navigate Target="/Standings.xaml" />
 		</Command>
 
-		<!--TODO: 1.1 - RecordMatch Command Variations and Phrase Lists-->
 		<Command Name="RecordMatch">
 			<Example> record match </Example>
 			<ListenFor> record [new] match </ListenFor>
@@ -25,28 +24,21 @@
 
 		<Command Name="RecordMatchWithPlayerNames">
 			<Example> match Danny versus Scott </Example>
-			<ListenFor> [new] match {Player1Name} and {Player2Name} </ListenFor>
-			<ListenFor> {Player1Name} versus {Player2Name} </ListenFor>
+			<ListenFor> [new] match {Player1Name} and {Player2Name} {taunt}</ListenFor>
+			<ListenFor> {Player1Name} versus {Player2Name} {taunt}</ListenFor>
 			<Feedback> Recording match... </Feedback>
 			<Navigate Target="\RecordMatch.xaml" />
 		</Command>
 
 		<Command Name="RecordMatchWithTeamNames">
 			<Example> match Danny and Scott </Example>
-			<ListenFor> [new] match {Team1Name} and {Team2Name} </ListenFor>
-			<ListenFor> {Team1Name} versus {Team2Name} </ListenFor>
+			<ListenFor> [new] match {Team1Name} and {Team2Name} {taunt}</ListenFor>
+			<ListenFor> {Team1Name} versus {Team2Name} {taunt}</ListenFor>
 			<Feedback> Recording match... </Feedback>
 			<Navigate Target="\RecordMatch.xaml" />
 		</Command>
 
-		<Command Name="RecordMatchUnknown">
-			<Example> match Danny and Scott </Example>
-			<ListenFor> [new] match {*} and {*} </ListenFor>
-			<ListenFor> {*} versus {*} </ListenFor>
-			<Feedback> Recording match... </Feedback>
-			<Navigate Target="\RecordMatch.xaml" />
-		</Command>
-		
+	
 		<PhraseList Label="Player1Name">
 			<Item> Player 1 </Item>
             <Item> Player 2 </Item>
@@ -65,5 +57,9 @@
 			<Item> Team 2 </Item>
 		</PhraseList>
 
+		<PhraseTopic Label="taunt" Scenario="Short Message">
+			<Subject>Taunt</Subject>
+		</PhraseTopic>
+		
 	</CommandSet>
 </VoiceCommands>

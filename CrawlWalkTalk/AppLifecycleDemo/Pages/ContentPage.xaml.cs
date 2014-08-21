@@ -21,22 +21,14 @@ namespace AppLifecycleDemo.Pages
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-			base.OnNavigatedTo(e);
+			//TODO: AppLifecycleDemo 2.0 - OnNavigatedTo
 
-			bool retrieveSavedNotes = PhoneApplicationService.Current.State.Keys.Contains(HAS_SAVED_NOTES);
-			if (retrieveSavedNotes)
-			{
-				NotesA.Text = (string)PhoneApplicationService.Current.State[NOTES_A_KEY];
-				NotesB.Text = (string)PhoneApplicationService.Current.State[NOTES_B_KEY];
-				NotesC.Text = (string)PhoneApplicationService.Current.State[NOTES_C_KEY];
-				NotesD.Text = (string)PhoneApplicationService.Current.State[NOTES_D_KEY];
-				NotesE.Text = (string)PhoneApplicationService.Current.State[NOTES_E_KEY];
-			}
+			base.OnNavigatedTo(e);
 
 			string stateName = NavigationContext.QueryString["state"];
 			StateName.Text = stateName;
-
-			switch (stateName)
+		
+			switch ( stateName )
 			{
 				case "A":
 					StateA.Visibility = Visibility.Visible;
@@ -54,11 +46,25 @@ namespace AppLifecycleDemo.Pages
 					StateE.Visibility = Visibility.Visible;
 					break;
 			}
+
+			//TODO: AppLifecycleDemo 4.0 - Restore State
+
+			bool retrieveSavedNotes = PhoneApplicationService.Current.State.Keys.Contains(HAS_SAVED_NOTES);
+			if (retrieveSavedNotes)
+			{
+				NotesA.Text = (string)PhoneApplicationService.Current.State[NOTES_A_KEY];
+				NotesB.Text = (string)PhoneApplicationService.Current.State[NOTES_B_KEY];
+				NotesC.Text = (string)PhoneApplicationService.Current.State[NOTES_C_KEY];
+				NotesD.Text = (string)PhoneApplicationService.Current.State[NOTES_D_KEY];
+				NotesE.Text = (string)PhoneApplicationService.Current.State[NOTES_E_KEY];
+			}
 		}
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
-			base.OnNavigatedFrom(e);
+			//TODO: AppLifecycleDemo 3.0 - Save State
+
+			base.OnNavigatedFrom( e );
 
 			PhoneApplicationService.Current.State[HAS_SAVED_NOTES] = true;
 			PhoneApplicationService.Current.State[NOTES_A_KEY] = NotesA.Text;

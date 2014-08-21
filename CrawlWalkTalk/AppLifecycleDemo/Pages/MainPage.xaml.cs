@@ -5,8 +5,6 @@ namespace AppLifecycleDemo.Pages
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
-		//NOTE: Update the Navigation Page value in Properties/WMAppManifest.xml to Pages\MainPage.xaml where Pages is the folder containing MainPage.xaml.
-
 		public MainPage()
 		{
 			InitializeComponent();
@@ -39,6 +37,8 @@ namespace AppLifecycleDemo.Pages
 
 		private void Navigate(string stateParameter)
 		{
+			//TODO: AppLifecycleDemo 1.0 - Navigate
+
 			string pagePathWithParameter = string.Format("/Pages/ContentPage.xaml?state={0}", stateParameter);
 			NavigationService.Navigate(new Uri(pagePathWithParameter, UriKind.Relative));
 		}
