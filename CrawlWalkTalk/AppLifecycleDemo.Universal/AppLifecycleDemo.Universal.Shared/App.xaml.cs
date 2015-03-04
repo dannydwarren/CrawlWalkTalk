@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,6 +33,8 @@ namespace AppLifecycleDemo.Universal
 	/// </summary>
 	public sealed partial class App : Application
 	{
+		private const string NAVIGATION_STATE = "NAVIGATION_STATE";
+
 #if WINDOWS_PHONE_APP
 		private TransitionCollection transitions;
 #endif
@@ -76,6 +79,14 @@ namespace AppLifecycleDemo.Universal
 				if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
 				{
 					// TODO: Load state from previously suspended application
+
+					object navigationStateObj;
+					if (ApplicationData.Current.LocalSettings.Values.TryGetValue(NAVIGATION_STATE, out navigationStateObj)
+						&& navigationStateObj != null)
+					{
+						string navigationState = navigationStateObj.ToString();
+						rootFrame.SetNavigationState(navigationState);
+					}
 				}
 
 				// Place the frame in the current Window
@@ -156,6 +167,12 @@ namespace AppLifecycleDemo.Universal
 			var deferral = e.SuspendingOperation.GetDeferral();
 
 			// TODO: Save application state and stop any background activity
+			Frame rootFrame = Window.Current.Content as Frame;
+			if (rootFrame != null)
+			{
+				ApplicationData.Current.LocalSettings.Values[NAVIGATION_STATE] = rootFrame.GetNavigationState();
+			}
+	
 			deferral.Complete();
 		}
 	}
