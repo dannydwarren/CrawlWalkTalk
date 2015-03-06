@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Navigation;
@@ -19,8 +20,7 @@ namespace VoiceApiDemo
 		private const string VOICE_COMMAND_NAME_KEY = "voiceCommandName";
 		private const string RECORD_MATCH_WITH_PLAYER_NAMES_KEY = "RecordMatchWithPlayerNames";
 		private const string RECORD_MATCH_WITH_TEAM_NAMES_KEY = "RecordMatchWithTeamNames";
-		private const string RECORD_MATCH_UNKNOWN_KEY = "RecordMatchUnknown";
-		private readonly SpeechSynthesizer _speechSynth = new SpeechSynthesizer();
+		private const string RECORD_MATCH_KEY = "RecordMatch";
 
 		protected override void OnNavigatedTo( NavigationEventArgs e )
 		{
@@ -30,7 +30,7 @@ namespace VoiceApiDemo
 			string player1Name = "Player One";
 			string player2Name = "Player Two";
 			string taunt = string.Empty;
-			//NavigationContext.QueryString == "RecordMatch.xaml?voiceCommandName=RecordMatchWithPlayerNames&Player1Name=Danny&Player2Name=Travis"
+			//NavigationContext.QueryString == "RecordMatch.xaml?voiceCommandName=RecordMatchWithPlayerNames&Player1Name=Danny&Player2Name=Travis&taunt=You're going down"
 			string voiceCommandName;
 			if ( NavigationContext.QueryString
                 .TryGetValue( VOICE_COMMAND_NAME_KEY, out voiceCommandName ) )
@@ -47,9 +47,9 @@ namespace VoiceApiDemo
 					player1Name = NavigationContext.QueryString["Team1Name"];
 					player2Name = NavigationContext.QueryString["Team2Name"];
 				}
-				else if ( voiceCommandName == RECORD_MATCH_UNKNOWN_KEY )
+				else if ( voiceCommandName == RECORD_MATCH_KEY )
 				{
-					PageTitle.Text = "record unknown match";
+					PageTitle.Text = "record anonymous match";
 				}
 
 				if (NavigationContext.QueryString.Keys.Contains("taunt"))
@@ -61,7 +61,8 @@ namespace VoiceApiDemo
 			InitializeMatch( player1Name, player2Name, taunt );
 		}
 
-		private async void InitializeMatch( string player1Name, string player2Name, string taunt )
+		private readonly SpeechSynthesizer _speechSynth = new SpeechSynthesizer();
+		private async void InitializeMatch(string player1Name, string player2Name, string taunt)
 		{
 			Player1NameTextBox.Text = player1Name;
 			Player2NameTextBox.Text = player2Name;
@@ -79,14 +80,13 @@ namespace VoiceApiDemo
 		private const string POINT_PLAYER_FORMAT = "Point {0}";
 		private const string ADD_ONE_PLAYER_FORMAT = "Add One {0}";
 		private const int WINNING_SCORE = 3;
-		private const int WIN_BY_FACTOR = 1;
 		private readonly SpeechRecognizer _speechReco = new SpeechRecognizer();
 
 		private async Task UseVoiceToRecordPoints( string player1Name, string player2Name )
 		{
 			//TODO: VoiceApiDemo 5.0 - Speech to Text
 
-			string[] pointGrammar = new[]
+			var pointGrammar = new List<string>
 				                        {
 					                        string.Format(POINT_PLAYER_FORMAT, player1Name),
 					                        string.Format(POINT_PLAYER_FORMAT, player2Name),
@@ -100,8 +100,7 @@ namespace VoiceApiDemo
 
 			int player1Points = 0;
 			int player2Points = 0;
-			while ( player1Points < WINNING_SCORE && player2Points < WINNING_SCORE
-				   && ( player1Points > player2Points - WIN_BY_FACTOR || player2Points > player1Points - WIN_BY_FACTOR ) )
+			while ( player1Points < WINNING_SCORE && player2Points < WINNING_SCORE )
 			{
 				SpeechRecognitionResult result = await _speechReco.RecognizeAsync();
 				if ( result.Text == pointGrammar[0] || result.Text == pointGrammar[2] )
@@ -118,10 +117,11 @@ namespace VoiceApiDemo
 			}
 
 			string winnerName = player1Points > player2Points ? player1Name : player2Name;
+			string loserName = player1Points < player2Points ? player1Name : player2Name;
 			Winner.Text = string.Format( "Winner: {0}!!!!", winnerName );
 			SpeechStatus.Text = "Stopped";
-		
-			await _speechSynth.SpeakTextAsync( string.Format( "{0} just destroyed {1}.", player1Name, player2Name ) );
+
+			await _speechSynth.SpeakTextAsync(string.Format("{0} just destroyed {1}.", winnerName, loserName));
 		}
 
 		private void AudioCaptureStateChanged( SpeechRecognizer sender, SpeechRecognizerAudioCaptureStateChangedEventArgs args )
