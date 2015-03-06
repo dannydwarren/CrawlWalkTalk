@@ -47,6 +47,12 @@ namespace AppLifecycleDemo.Universal
 		{
 			this.InitializeComponent();
 			this.Suspending += this.OnSuspending;
+			this.Resuming += App_Resuming;
+		}
+
+		void App_Resuming(object sender, object e)
+		{
+			//TODO: Resume Stopped Serives
 		}
 
 		/// <summary>
