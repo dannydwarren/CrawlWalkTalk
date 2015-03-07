@@ -52,7 +52,7 @@ namespace AppLifecycleDemo.Universal
 
 		void App_Resuming(object sender, object e)
 		{
-			//TODO: Resume Stopped Serives
+			//TODO: Resume Stopped Services
 		}
 
 		/// <summary>
