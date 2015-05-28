@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoiceApiDemo", "VoiceApiDemo\VoiceApiDemo.csproj", "{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppLifecycleDemo.Universal", "AppLifecycleDemo.Universal", "{403B4A3F-61D0-4801-A676-4CBFF384F92A}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AppLifecycleDemo.Universal.Shared", "AppLifecycleDemo.Universal\AppLifecycleDemo.Universal.Shared\AppLifecycleDemo.Universal.Shared.shproj", "{1B96210C-353A-4AC9-B7A3-4C11B47FED2B}"
@@ -30,26 +28,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|ARM.ActiveCfg = Debug|ARM
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|ARM.Build.0 = Debug|ARM
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|ARM.Deploy.0 = Debug|ARM
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x86.ActiveCfg = Debug|x86
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x86.Build.0 = Debug|x86
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Debug|x86.Deploy.0 = Debug|x86
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|ARM.ActiveCfg = Release|ARM
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|ARM.Build.0 = Release|ARM
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|ARM.Deploy.0 = Release|ARM
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x64.ActiveCfg = Release|Any CPU
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x86.ActiveCfg = Release|x86
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x86.Build.0 = Release|x86
-		{58C2B2EB-969A-418A-9A08-C28FB9CCFDEE}.Release|x86.Deploy.0 = Release|x86
 		{3A00E26C-D26F-4AAB-835E-2830D1FCD78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A00E26C-D26F-4AAB-835E-2830D1FCD78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A00E26C-D26F-4AAB-835E-2830D1FCD78E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
