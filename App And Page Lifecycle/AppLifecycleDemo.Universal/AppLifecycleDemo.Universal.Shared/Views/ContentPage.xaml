@@ -6,44 +6,51 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  mc:Ignorable="d">
 
-	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-			<StackPanel x:Name="ContentPanel"
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer HorizontalScrollMode="Disabled"
+                      VerticalScrollMode="Auto">
+            <StackPanel x:Name="ContentPanel"
 						Margin="12,0">
-				<TextBlock x:Name="StateName"
+                <Grid x:Name="TabletBackSection">
+                    <Button Content="Back"
+                        Click="BackButtonClick"/>
+                </Grid>
+                <TextBlock x:Name="StateName"
 						   Style="{StaticResource HeaderTextBlockStyle}" />
-				<StackPanel x:Name="StateA"
+                <StackPanel x:Name="StateA"
 							Visibility="Collapsed">
-					<Image Source="/Assets/FrogImages/FrogA.png" />
-					<TextBox x:Name="NotesA"
+                    <Image Source="/Assets/FrogImages/FrogA.png" />
+                    <TextBox x:Name="NotesA"
 							 AcceptsReturn="True" />
-				</StackPanel>
-				<StackPanel x:Name="StateB"
+                </StackPanel>
+                <StackPanel x:Name="StateB"
 							Visibility="Collapsed">
-					<Image Source="/Assets/FrogImages/FrogB.png" />
-					<TextBox x:Name="NotesB"
+                    <Image Source="/Assets/FrogImages/FrogB.png" />
+                    <TextBox x:Name="NotesB"
 							 AcceptsReturn="True" />
-				</StackPanel>
-				<StackPanel x:Name="StateC"
+                </StackPanel>
+                <StackPanel x:Name="StateC"
 							Visibility="Collapsed">
-					<Image Source="/Assets/FrogImages/FrogC.png" />
-					<TextBox x:Name="NotesC"
+                    <Image Source="/Assets/FrogImages/FrogC.png" />
+                    <TextBox x:Name="NotesC"
 							 AcceptsReturn="True" />
-				</StackPanel>
-				<StackPanel x:Name="StateD"
+                </StackPanel>
+                <StackPanel x:Name="StateD"
 							Visibility="Collapsed">
-					<Image Source="/Assets/FrogImages/FrogD.png" />
-					<TextBox x:Name="NotesD"
+                    <Image Source="/Assets/FrogImages/FrogD.png" />
+                    <TextBox x:Name="NotesD"
 							 AcceptsReturn="True" />
-				</StackPanel>
-				<StackPanel x:Name="StateE"
+                </StackPanel>
+                <StackPanel x:Name="StateE"
 							Visibility="Collapsed">
-					<Image Source="/Assets/FrogImages/FrogE.png" />
-					<TextBox x:Name="NotesE"
+                    <Image Source="/Assets/FrogImages/FrogE.png" />
+                    <TextBox x:Name="NotesE"
 							 AcceptsReturn="True" />
-				</StackPanel>
-				<TextBlock Opacity=".5"
+                </StackPanel>
+                <TextBlock Opacity=".5"
 						   Text="Image Source: http://commons.wikimedia.org/wiki/File:Metamorphosis_frog_Meyers_edit.png"
 						   TextWrapping="Wrap" />
-			</StackPanel>
-	</Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Page>

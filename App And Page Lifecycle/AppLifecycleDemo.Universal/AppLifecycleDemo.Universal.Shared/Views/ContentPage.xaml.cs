@@ -22,9 +22,15 @@ namespace AppLifecycleDemo.Universal.Views
 		public ContentPage()
 		{
 			InitializeComponent();
+
+#if WINDOWS_APP
+            TabletBackSection.Visibility = Visibility.Visible;
+#elif WINDOWS_PHONE_APP
+            TabletBackSection.Visibility = Visibility.Collapsed;
+#endif
 		}
 
-		protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			//TODO: AppLifecycleDemo 2.0 - OnNavigatedTo
 
@@ -78,5 +84,10 @@ namespace AppLifecycleDemo.Universal.Views
 			ApplicationData.Current.LocalSettings.Values[NOTES_D_KEY] = NotesD.Text;
 			ApplicationData.Current.LocalSettings.Values[NOTES_E_KEY] = NotesE.Text;
 		}
-	}
+
+        private void BackButtonClick( object sender, RoutedEventArgs e )
+        {
+            Frame.GoBack();
+        }
+    }
 }
