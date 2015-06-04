@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using AppLifecycleDemo.Universal.Services;
 #if WINDOWS_PHONE_APP
 
 using Windows.Phone.UI.Input;
@@ -52,7 +52,7 @@ namespace AppLifecycleDemo.Universal
 
 		void App_Resuming(object sender, object e)
 		{
-			//TODO: Resume Stopped Services
+		    AppLevelService.Instance.Start();
 		}
 
 		/// <summary>
@@ -63,14 +63,9 @@ namespace AppLifecycleDemo.Universal
 		/// <param name="e">Details about the launch request and process.</param>
 		protected override void OnLaunched(LaunchActivatedEventArgs e)
 		{
-#if DEBUG
-			if (System.Diagnostics.Debugger.IsAttached)
-			{
-				//this.DebugSettings.EnableFrameRateCounter = true;
-			}
-#endif
+            AppLevelService.Instance.Start();
 
-			Frame rootFrame = Window.Current.Content as Frame;
+            Frame rootFrame = Window.Current.Content as Frame;
 
 			// Do not repeat app initialization when the Window already has content,
 			// just ensure that the window is active
@@ -172,8 +167,10 @@ namespace AppLifecycleDemo.Universal
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
 
-			// TODO: Save application state and stop any background activity
-			Frame rootFrame = Window.Current.Content as Frame;
+            AppLevelService.Instance.Stop();
+
+            // TODO: Save application state and stop any background activity
+            Frame rootFrame = Window.Current.Content as Frame;
 			if (rootFrame != null)
 			{
 				ApplicationData.Current.LocalSettings.Values[NAVIGATION_STATE] = rootFrame.GetNavigationState();
