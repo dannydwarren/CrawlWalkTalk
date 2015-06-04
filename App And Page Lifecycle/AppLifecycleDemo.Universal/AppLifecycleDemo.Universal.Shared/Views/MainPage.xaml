@@ -6,35 +6,41 @@
 	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	  mc:Ignorable="d">
 
-    
-        <Grid x:Name="RootGrid"
+
+    <Grid x:Name="RootGrid"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
               Margin="0,20">
-            <StackPanel x:Name="SecondsSinceLaunchSection"
+        <StackPanel x:Name="SecondsSinceLaunchSection"
                     Margin="12,0">
-                <TextBlock Text="Seconds Since Launch"
+            <TextBlock x:Name="SecondsSinceLaunchHeaderTextBlock"
+                       Text="Seconds Since Launch"
 					   Style="{StaticResource HeaderTextBlockStyle}" />
-                <TextBlock Text="{Binding Path=SecondsSinceAppLaunch}"
+            <TextBlock Text="{Binding Path=SecondsSinceAppLaunch}"
 					   Style="{StaticResource HeaderTextBlockStyle}" />
-            </StackPanel>
-            <StackPanel x:Name="ActionSection"  Margin="12,0">
-                <TextBlock Text="App Lifecycle Demo"
+            <TextBlock x:Name="SecondsInUseHeaderTextBlock"
+                       Text="Seconds In Use"
 					   Style="{StaticResource HeaderTextBlockStyle}" />
-                <Button x:Name="PartA"
+            <TextBlock Text="{Binding Path=SecondsAppInUse}"
+					   Style="{StaticResource HeaderTextBlockStyle}" />
+        </StackPanel>
+        <StackPanel x:Name="ActionSection"  Margin="12,0">
+            <TextBlock Text="App Lifecycle Demo"
+					   Style="{StaticResource HeaderTextBlockStyle}" />
+            <Button x:Name="PartA"
 					Content="A"
 					Click="PartA_Click" />
-                <Button x:Name="PartB"
+            <Button x:Name="PartB"
 					Content="B"
 					Click="PartB_Click" />
-                <Button x:Name="PartC"
+            <Button x:Name="PartC"
 					Content="C"
 					Click="PartC_Click" />
-                <Button x:Name="PartD"
+            <Button x:Name="PartD"
 					Content="D"
 					Click="PartD_Click" />
-                <Button x:Name="PartE"
+            <Button x:Name="PartE"
 					Content="E"
 					Click="PartE_Click" />
-            </StackPanel>
-        </Grid>
+        </StackPanel>
+    </Grid>
 </Page>

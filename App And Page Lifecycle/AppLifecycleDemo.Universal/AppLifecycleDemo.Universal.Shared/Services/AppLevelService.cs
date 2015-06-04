@@ -26,10 +26,11 @@ namespace AppLifecycleDemo.Universal.Services
         {
             Interval = TimeSpan.FromSeconds(1),
         };
-        
+
         private void TimerTickHandler( object sender, object e )
         {
             SecondsSinceAppLaunch++;
+            SecondsAppInUse++;
         }
 
 
@@ -50,6 +51,21 @@ namespace AppLifecycleDemo.Universal.Services
             }
         }
 
+        private int _secondsAppInUse;
+        public int SecondsAppInUse
+        {
+            get { return _secondsAppInUse; }
+            set
+            {
+                if (_secondsAppInUse.Equals(value))
+                {
+                    return;
+                }
+                _secondsAppInUse = value;
+
+                NotifyPropertyChanged();
+            }
+        }
 
 
         public void Start()

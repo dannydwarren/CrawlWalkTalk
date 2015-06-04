@@ -34,6 +34,7 @@ namespace AppLifecycleDemo.Universal
 	public sealed partial class App : Application
 	{
 		private const string NAVIGATION_STATE = "NAVIGATION_STATE";
+		private const string APP_LEVEL_SERVICE_STATE = "APP_LEVEL_SERVICE_STATE";
 
 #if WINDOWS_PHONE_APP
 		private TransitionCollection transitions;
@@ -87,6 +88,15 @@ namespace AppLifecycleDemo.Universal
 					{
 						string navigationState = navigationStateObj.ToString();
 						rootFrame.SetNavigationState(navigationState);
+					}
+
+                    object appLevelServiceState;
+				    int appLevelServiceSecondsAppInUse;
+					if (ApplicationData.Current.LocalSettings.Values.TryGetValue(APP_LEVEL_SERVICE_STATE, out appLevelServiceState)
+						&& appLevelServiceState != null
+                        && int.TryParse(appLevelServiceState.ToString(), out appLevelServiceSecondsAppInUse))
+					{
+					    AppLevelService.Instance.SecondsAppInUse = appLevelServiceSecondsAppInUse;
 					}
 				}
 
@@ -167,9 +177,11 @@ namespace AppLifecycleDemo.Universal
 		{
 			var deferral = e.SuspendingOperation.GetDeferral();
 
-            AppLevelService.Instance.Stop();
-
             // TODO: Save application state and stop any background activity
+            AppLevelService.Instance.Stop();
+		    ApplicationData.Current.LocalSettings.Values[APP_LEVEL_SERVICE_STATE] = 
+                AppLevelService.Instance.SecondsAppInUse;
+
             Frame rootFrame = Window.Current.Content as Frame;
 			if (rootFrame != null)
 			{

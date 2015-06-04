@@ -24,6 +24,8 @@ namespace AppLifecycleDemo.Universal.Views
             RootGrid.RowDefinitions.Add(new RowDefinition());
             Grid.SetRow(ActionSection, 1);
             Grid.SetRow(SecondsSinceLaunchSection, 0);
+            SecondsSinceLaunchHeaderTextBlock.FontSize = 40;
+            SecondsInUseHeaderTextBlock.FontSize = 40;
 #endif
         }
 
