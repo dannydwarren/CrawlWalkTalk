@@ -66,6 +66,10 @@ namespace AppLifecycleDemo.Universal
 		{
             AppLevelService.Instance.Start();
 
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+#endif
+
             Frame rootFrame = Window.Current.Content as Frame;
 
 			// Do not repeat app initialization when the Window already has content,
@@ -120,7 +124,6 @@ namespace AppLifecycleDemo.Universal
 				rootFrame.ContentTransitions = null;
 				rootFrame.Navigated += this.RootFrame_FirstNavigated;
 
-				HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
 #endif
 
