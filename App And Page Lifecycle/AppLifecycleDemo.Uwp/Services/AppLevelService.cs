@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Windows.UI.Xaml;
 
-namespace AppLifecycleDemo.Universal.Services
+namespace AppLifecycleDemo.Uwp.Services
 {
     public class AppLevelService : INotifyPropertyChanged
     {
-        #region Singleton
         private static AppLevelService _instance;
         public static AppLevelService Instance
         {
@@ -19,8 +16,6 @@ namespace AppLifecycleDemo.Universal.Services
         {
             _timer.Tick += TimerTickHandler;
         }
-
-        #endregion
 
         private readonly DispatcherTimer _timer = new DispatcherTimer()
         {
@@ -32,7 +27,6 @@ namespace AppLifecycleDemo.Universal.Services
             SecondsSinceAppLaunch++;
             SecondsAppInUse++;
         }
-
 
 
         private int _secondsSinceAppLaunch;
@@ -79,9 +73,7 @@ namespace AppLifecycleDemo.Universal.Services
         }
 
 
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void NotifyPropertyChanged( [CallerMemberName] string propertyName = null )
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

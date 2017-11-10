@@ -3,13 +3,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace AppLifecycleDemo.Universal.Views
+namespace AppLifecycleDemo.Uwp.Views
 {
-	/// <summary>
-	/// An empty page that can be used on its own or navigated to within a Frame.
-	/// </summary>
 	public sealed partial class ContentPage : Page
 	{
 		const string HAS_SAVED_NOTES = "HAS_SAVED_NOTES";
@@ -22,12 +17,6 @@ namespace AppLifecycleDemo.Universal.Views
 		public ContentPage()
 		{
 			InitializeComponent();
-
-#if WINDOWS_APP
-            TabletBackSection.Visibility = Visibility.Visible;
-#elif WINDOWS_PHONE_APP
-            TabletBackSection.Visibility = Visibility.Collapsed;
-#endif
 		}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
