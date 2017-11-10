@@ -16,14 +16,16 @@ namespace AppLifecycleDemo.Uwp.Views
 
 		public ContentPage()
 		{
-			InitializeComponent();
+            DebugWrite.MethodName(nameof(ContentPage));
+            InitializeComponent();
 		}
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-			//TODO: AppLifecycleDemo 2.0 - OnNavigatedTo
+            //TODO: AppLifecycleDemo 2.0 - OnNavigatedTo
 
-			base.OnNavigatedTo(e);
+            DebugWrite.MethodName(nameof(ContentPage));
+            base.OnNavigatedTo(e);
 
 			string stateName = e.Parameter != null ? e.Parameter.ToString() : "A";
 			StateName.Text = stateName;
@@ -62,9 +64,10 @@ namespace AppLifecycleDemo.Uwp.Views
 
 		protected override void OnNavigatedFrom(NavigationEventArgs e)
 		{
-			//TODO: AppLifecycleDemo 3.0 - Save State
+            //TODO: AppLifecycleDemo 3.0 - Save State
 
-			base.OnNavigatedFrom(e);
+            DebugWrite.MethodName(nameof(ContentPage));
+            base.OnNavigatedFrom(e);
 
 			ApplicationData.Current.LocalSettings.Values[HAS_SAVED_NOTES] = true;
 			ApplicationData.Current.LocalSettings.Values[NOTES_A_KEY] = NotesA.Text;
@@ -76,6 +79,7 @@ namespace AppLifecycleDemo.Uwp.Views
 
         private void BackButtonClick( object sender, RoutedEventArgs e )
         {
+            DebugWrite.MethodName(nameof(ContentPage));
             Frame.GoBack();
         }
     }

@@ -18,6 +18,7 @@ namespace AppLifecycleDemo.Uwp
 
         public App()
         {
+            DebugWrite.MethodName(nameof(App));
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.Resuming += App_Resuming;
@@ -25,11 +26,13 @@ namespace AppLifecycleDemo.Uwp
 
         void App_Resuming(object sender, object e)
         {
+            DebugWrite.MethodName(nameof(App));
             AppLevelService.Instance.Start();
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            DebugWrite.MethodName(nameof(App));
             AppLevelService.Instance.Start();
 
             Frame rootFrame = Window.Current.Content as Frame;
@@ -89,11 +92,13 @@ namespace AppLifecycleDemo.Uwp
 
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            DebugWrite.MethodName(nameof(App));
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
 
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
+            DebugWrite.MethodName(nameof(App));
             var deferral = e.SuspendingOperation.GetDeferral();
 
             AppLevelService.Instance.Stop();

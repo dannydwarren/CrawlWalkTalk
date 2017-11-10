@@ -36,6 +36,11 @@
 					   Style="{StaticResource HeaderTextBlockStyle}" />
             <TextBlock Text="{Binding Path=SecondsAppInUse}"
 					   Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock x:Name="SecondsOnPageHeaderTextBlock"
+                       Text="Seconds On Page"
+					   Style="{StaticResource HeaderTextBlockStyle}" />
+            <TextBlock Text="{x:Bind SecondsOnPage, Mode=TwoWay}"
+					   Style="{StaticResource HeaderTextBlockStyle}" />
         </StackPanel>
         <StackPanel x:Name="ActionSection"
                     Grid.Column="1"
