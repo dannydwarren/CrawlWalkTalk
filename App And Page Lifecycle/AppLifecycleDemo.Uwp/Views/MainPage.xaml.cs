@@ -4,6 +4,7 @@ using AppLifecycleDemo.Uwp.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System;
+using Windows.UI.Xaml.Navigation;
 
 namespace AppLifecycleDemo.Uwp.Views
 {
@@ -43,6 +44,11 @@ namespace AppLifecycleDemo.Uwp.Views
 
                 NotifyPropertyChanged();
             }
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
         }
 
         private void PartA_Click( object sender, RoutedEventArgs routedEventArgs )
